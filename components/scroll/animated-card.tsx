@@ -23,9 +23,9 @@ export function AnimatedCard({
   });
   const shouldReduceMotion = useReducedMotion();
 
-  // Add random jitter (±40ms) for organic feel
-  const jitter = (Math.random() - 0.5) * 0.08; // ±40ms in seconds
-  const baseDelay = delay + index * 0.08; // Base stagger
+  // Add random jitter (±20ms) for subtle organic feel
+  const jitter = (Math.random() - 0.5) * 0.04; // ±20ms in seconds
+  const baseDelay = delay + index * 0.05; // Base stagger (reduced)
   const totalDelay = baseDelay + jitter;
 
   if (shouldReduceMotion) {
@@ -35,16 +35,16 @@ export function AnimatedCard({
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 32 }}
+      initial={{ opacity: 0, y: 16 }}
       animate={
         isInView
           ? { opacity: 1, y: 0 }
-          : { opacity: 0, y: 32 }
+          : { opacity: 0, y: 16 }
       }
       transition={{
-        duration: 0.65,
+        duration: 0.45,
         delay: Math.max(0, totalDelay),
-        ease: [0.22, 0.61, 0.36, 1],
+        ease: [0.16, 1, 0.3, 1],
       }}
       style={{
         willChange: 'transform, opacity',
@@ -88,8 +88,8 @@ export function AnimatedGrid({
         hidden: {},
         visible: {
           transition: {
-            staggerChildren: 0.08,
-            delayChildren: 0.1,
+            staggerChildren: 0.05,
+            delayChildren: 0.05,
           },
         },
       }}
@@ -103,8 +103,8 @@ export function AnimatedGrid({
 export function GridItem({ children, className = '' }: { children: ReactNode; className?: string }) {
   const shouldReduceMotion = useReducedMotion();
 
-  // Add organic random jitter
-  const jitter = (Math.random() - 0.5) * 0.08;
+  // Add subtle organic jitter
+  const jitter = (Math.random() - 0.5) * 0.04;
 
   if (shouldReduceMotion) {
     return <div className={className}>{children}</div>;
@@ -113,14 +113,14 @@ export function GridItem({ children, className = '' }: { children: ReactNode; cl
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, y: 32 },
+        hidden: { opacity: 0, y: 16 },
         visible: {
           opacity: 1,
           y: 0,
           transition: {
-            duration: 0.65,
+            duration: 0.45,
             delay: jitter,
-            ease: [0.22, 0.61, 0.36, 1],
+            ease: [0.16, 1, 0.3, 1],
           },
         },
       }}

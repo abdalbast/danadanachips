@@ -33,12 +33,12 @@ export function RevealSection({
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{
-        duration: 0.7,
+        duration: 0.5,
         delay,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: [0.16, 1, 0.3, 1], // Lighter easing
       }}
       className={className}
     >
@@ -107,13 +107,13 @@ export function StaggerItem({ children, className = '' }: StaggerItemProps) {
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, y: 32 },
+        hidden: { opacity: 0, y: 16 },
         visible: {
           opacity: 1,
           y: 0,
           transition: {
-            duration: 0.65,
-            ease: [0.22, 0.61, 0.36, 1], // power2.out equivalent
+            duration: 0.45,
+            ease: [0.16, 1, 0.3, 1], // Lighter easing
           },
         },
       }}

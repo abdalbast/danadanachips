@@ -28,13 +28,13 @@ export function ParallaxElement({
     offset: ['start end', 'end start'],
   });
 
-  // Clamp parallax on mobile
-  const effectiveSpeed = isMobile ? speed * 0.5 : speed;
+  // Clamp parallax on mobile - much more subtle
+  const effectiveSpeed = isMobile ? speed * 0.3 : speed * 0.6;
 
-  // Different ranges for foreground vs background
+  // Different ranges for foreground vs background - reduced intensity
   const yRange = type === 'foreground' 
-    ? [-100 * effectiveSpeed, 100 * effectiveSpeed]
-    : [-150 * effectiveSpeed, 150 * effectiveSpeed];
+    ? [-50 * effectiveSpeed, 50 * effectiveSpeed]
+    : [-80 * effectiveSpeed, 80 * effectiveSpeed];
 
   const y = useTransform(
     scrollYProgress,
@@ -42,9 +42,9 @@ export function ParallaxElement({
     direction === 'up' ? yRange : [yRange[1], yRange[0]]
   );
 
-  // Foreground elements also scale slightly
+  // Very subtle scale for foreground
   const scale = type === 'foreground'
-    ? useTransform(scrollYProgress, [0, 0.5, 1], [0.98, 1, 0.98])
+    ? useTransform(scrollYProgress, [0, 0.5, 1], [0.99, 1, 0.99])
     : 1;
 
   // Disable parallax if reduced motion
@@ -80,7 +80,7 @@ export function ParallaxImage({
   src,
   alt,
   className = '',
-  speed = 0.12,
+  speed = 0.08,
   isMobile = false,
 }: ParallaxImageProps) {
   return (
@@ -107,7 +107,7 @@ interface ParallaxBackgroundProps {
 export function ParallaxBackground({
   children,
   className = '',
-  speed = 0.15,
+  speed = 0.1,
   isMobile = false,
 }: ParallaxBackgroundProps) {
   return (

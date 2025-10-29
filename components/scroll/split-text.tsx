@@ -45,16 +45,16 @@ export function SplitText({
           style={{ display: 'block' }}
         >
           <motion.span
-            initial={{ y: 28, opacity: 0 }}
+            initial={{ y: 16, opacity: 0 }}
             animate={
               isInView
                 ? { y: 0, opacity: 1 }
-                : { y: 28, opacity: 0 }
+                : { y: 16, opacity: 0 }
             }
             transition={{
-              duration: 0.7,
+              duration: 0.5,
               delay: delay + lineIndex * stagger,
-              ease: [0.22, 0.61, 0.36, 1], // power2.out
+              ease: [0.16, 1, 0.3, 1], // Lighter easing
             }}
             style={{ display: 'block' }}
           >
@@ -107,16 +107,16 @@ export function SplitWords({
           style={{ marginRight: '0.25em' }}
         >
           <motion.span
-            initial={{ y: 24, opacity: 0 }}
+            initial={{ y: 12, opacity: 0 }}
             animate={
               isInView
                 ? { y: 0, opacity: 1 }
-                : { y: 24, opacity: 0 }
+                : { y: 12, opacity: 0 }
             }
             transition={{
-              duration: 0.6,
+              duration: 0.4,
               delay: delay + index * stagger,
-              ease: [0.22, 0.61, 0.36, 1],
+              ease: [0.16, 1, 0.3, 1],
             }}
             style={{ display: 'inline-block' }}
           >
