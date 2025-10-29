@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import { Card } from '@/components/ui/card';
 import { Play } from 'lucide-react';
-import { urlFor } from '@/lib/sanity.queries';
 import { motion } from 'framer-motion';
 import type { UGCContent } from '@/lib/types';
 
@@ -13,9 +12,7 @@ interface ReelCardProps {
 }
 
 export function ReelCard({ content, onClick }: ReelCardProps) {
-  const thumbnailUrl = content.thumbnailImage
-    ? urlFor(content.thumbnailImage).width(400).height(600).url()
-    : '/placeholder-reel.png';
+  const thumbnailUrl = content.thumbnailImage || content.mediaUrl || '/placeholder-product.jpg';
 
   return (
     <motion.div

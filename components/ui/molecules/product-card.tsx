@@ -6,7 +6,6 @@ import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { HeatChip } from '@/components/ui/atoms/heat-chip';
 import { HalalBadge } from '@/components/ui/atoms/halal-badge';
-import { urlFor } from '@/lib/sanity.queries';
 import { motion } from 'framer-motion';
 import type { Product } from '@/lib/types';
 
@@ -16,9 +15,7 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, locale }: ProductCardProps) {
-  const imageUrl = product.images[0]
-    ? urlFor(product.images[0]).width(400).height(400).url()
-    : '/placeholder-product.png';
+  const imageUrl = product.images[0] || '/placeholder-product.jpg';
 
   return (
     <motion.div

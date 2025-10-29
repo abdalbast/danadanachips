@@ -8,7 +8,7 @@ import { HeatChip } from '@/components/ui/atoms/heat-chip';
 import { HalalBadge } from '@/components/ui/atoms/halal-badge';
 import { ProductCard } from '@/components/ui/molecules/product-card';
 import { MapPin, Share2 } from 'lucide-react';
-import { getProductBySlug, urlFor } from '@/lib/sanity.queries';
+import { getProductBySlug } from '@/lib/sanity.queries';
 
 interface ProductDetailPageProps {
   params: Promise<{
@@ -28,9 +28,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
     notFound();
   }
 
-  const mainImageUrl = product.images[0]
-    ? urlFor(product.images[0]).width(800).height(800).url()
-    : '/placeholder-product.png';
+  const mainImageUrl = product.images[0] || '/placeholder-product.jpg';
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -49,22 +47,19 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
           </div>
           {product.images.length > 1 && (
             <div className="grid grid-cols-4 gap-2">
-              {product.images.slice(1, 5).map((image, index) => {
-                const thumbUrl = urlFor(image).width(200).height(200).url();
-                return (
-                  <div
-                    key={index}
-                    className="relative aspect-square rounded-lg overflow-hidden bg-muted cursor-pointer hover:opacity-75 transition-opacity"
-                  >
-                    <Image
-                      src={thumbUrl}
-                      alt={`${product.name} ${index + 2}`}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                );
-              })}
+              {product.images.slice(1, 5).map((image, index) => (
+                <div
+                  key={index}
+                  className="relative aspect-square rounded-lg overflow-hidden bg-muted cursor-pointer hover:opacity-75 transition-opacity"
+                >
+                  <Image
+                    src={image || '/placeholder-product.jpg'}
+                    alt={`${product.name} ${index + 2}`}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              ))}
             </div>
           )}
         </div>
