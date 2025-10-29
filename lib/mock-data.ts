@@ -15,7 +15,7 @@ export const mockProducts: Product[] = [
     ],
     isHalal: true,
     isFeatured: true,
-    images: ['/placeholder-product.jpg'],
+    images: ['/494525746_674675695200651_4437922332017011159_n.jpg'],
     description: 'Our hottest flavour! Packed with fiery chilli and bold spices for those who dare.',
     ingredients: 'Corn, Vegetable Oil, Chilli Seasoning (Salt, Sugar, Spices, Onion Powder, Garlic Powder)',
     nutritionPer100g: {
@@ -41,7 +41,7 @@ export const mockProducts: Product[] = [
     ],
     isHalal: true,
     isFeatured: true,
-    images: ['/placeholder-product.jpg'],
+    images: ['/495030988_677841384884082_2288565817306550936_n.jpg'],
     description: 'Classic cheese and onion flavour - a crowd favourite for all occasions.',
     ingredients: 'Corn, Vegetable Oil, Cheese & Onion Seasoning (Salt, Cheese Powder, Onion Powder, Natural Flavourings)'
   },
@@ -58,7 +58,7 @@ export const mockProducts: Product[] = [
     ],
     isHalal: true,
     isFeatured: true,
-    images: ['/placeholder-product.jpg'],
+    images: ['/493481470_677838411551046_8595512445647403553_n.jpg'],
     description: 'Smoky barbecue flavour with a hint of sweetness. Perfect for any gathering.',
     ingredients: 'Corn, Vegetable Oil, BBQ Seasoning (Salt, Sugar, Paprika, Smoked Paprika, Spices)'
   },
@@ -74,7 +74,7 @@ export const mockProducts: Product[] = [
     ],
     isHalal: true,
     isFeatured: false,
-    images: ['/placeholder-product.jpg'],
+    images: ['/499562068_680459471288940_4804510919466937818_n.jpg'],
     description: 'Tangy vinegar with a perfect balance of salt. Traditional taste with a modern twist.',
     ingredients: 'Corn, Vegetable Oil, Salt & Vinegar Seasoning (Salt, Sodium Diacetate, Citric Acid)'
   },
@@ -91,7 +91,7 @@ export const mockProducts: Product[] = [
     ],
     isHalal: true,
     isFeatured: false,
-    images: ['/placeholder-product.jpg'],
+    images: ['/499825860_689995420335345_3114302672824344621_n.jpg'],
     description: 'Creamy and smooth with a fresh hint of chive. Light and delicious.',
     ingredients: 'Corn, Vegetable Oil, Sour Cream & Chive Seasoning (Salt, Cream Powder, Onion Powder, Chive)'
   },
@@ -107,7 +107,7 @@ export const mockProducts: Product[] = [
     ],
     isHalal: true,
     isFeatured: false,
-    images: ['/placeholder-product.jpg'],
+    images: ['/503484345_18479970196069200_8996887427835175761_n.jpg'],
     description: 'Mild and sweet paprika flavour with a gentle warmth.',
     ingredients: 'Corn, Vegetable Oil, Paprika Seasoning (Salt, Sweet Paprika, Sugar, Spices)'
   }
@@ -205,42 +205,42 @@ export const mockUGC: UGCContent[] = [
   {
     _id: 'u1',
     platform: 'instagram',
-    mediaUrl: '/placeholder-ugc-1.jpg',
+    mediaUrl: '/503697132_18479970391069200_7243331760383154247_n.jpg',
     caption: '🔥 Can\'t get enough of these spicy puffs! Perfect movie snack! #DanaDana',
     author: '@snacklover_uk'
   },
   {
     _id: 'u2',
     platform: 'instagram',
-    mediaUrl: '/placeholder-ugc-2.jpg',
+    mediaUrl: '/505086714_695697093098511_2805790703272486057_n.jpg',
     caption: 'Best cheese & onion flavour ever! 😍 #DanaDanaChips',
     author: '@foodie_adventures'
   },
   {
     _id: 'u3',
     platform: 'tiktok',
-    mediaUrl: '/placeholder-ugc-3.jpg',
+    mediaUrl: '/514404378_712254364776117_1879296308114819041_n.jpg',
     caption: 'Try the BBQ flavour challenge! 🎯',
     author: '@snackreview'
   },
   {
     _id: 'u4',
     platform: 'instagram',
-    mediaUrl: '/placeholder-ugc-4.jpg',
+    mediaUrl: '/518051804_729328469735373_8586092874167205571_n.jpg',
     caption: 'My new favourite halal snack 🌟 #Halal #DanaDana',
     author: '@halal_foodie'
   },
   {
     _id: 'u5',
     platform: 'instagram',
-    mediaUrl: '/placeholder-ugc-5.jpg',
+    mediaUrl: '/518348408_717553570912863_6614485569469998600_n.jpg',
     caption: 'Perfect for parties! Everyone loved them 🎉',
     author: '@party_planner'
   },
   {
     _id: 'u6',
     platform: 'youtube',
-    mediaUrl: '/placeholder-ugc-6.jpg',
+    mediaUrl: '/494525746_674675695200651_4437922332017011159_n.jpg',
     caption: 'Full taste test video - all 6 flavours! 🎥',
     author: '@snackreviewtv'
   }
@@ -253,7 +253,7 @@ export const mockPromos: Promo[] = [
     slug: 'summer-special',
     title: 'Summer Special - Buy 2 Get 1 Free!',
     description: 'Stock up on your favourite flavours this summer. Buy any 2 packs and get 1 free!',
-    image: '/placeholder-promo.jpg',
+    image: '/494525746_674675695200651_4437922332017011159_n.jpg',
     startDate: '2024-06-01',
     endDate: '2025-12-31',
     ctaText: 'Shop Now',

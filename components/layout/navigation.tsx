@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { LanguageSwitch } from '@/components/ui/atoms/language-switch';
@@ -33,9 +34,16 @@ export default function Navigation({ locale }: NavigationProps) {
           {/* Logo */}
           <Link
             href={`/${locale}`}
-            className="font-display text-2xl font-black text-flame hover:text-flame/80 transition-colors"
+            className="flex items-center transition-opacity hover:opacity-80"
           >
-            Dana Dana
+            <Image
+              src="/Logo.jpg"
+              alt="Dana Dana"
+              width={120}
+              height={60}
+              priority
+              className="h-12 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Navigation */}
