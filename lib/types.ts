@@ -1,5 +1,3 @@
-import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
-
 export interface LocalizedString {
   en?: string;
   ar?: string;
@@ -16,7 +14,7 @@ export interface Product {
   sizes?: Array<{ size: string; price?: string }>;
   isHalal: boolean;
   isFeatured?: boolean;
-  images: SanityImageSource[];
+  images: string[];
   description?: string;
   ingredients?: string;
   nutritionPer100g?: {
@@ -48,7 +46,7 @@ export interface Retailer {
   phone?: string;
   hours?: string;
   onlineUrl?: string;
-  logo?: SanityImageSource;
+  logo?: string;
 }
 
 export interface UGCContent {
@@ -56,7 +54,7 @@ export interface UGCContent {
   platform: 'instagram' | 'tiktok' | 'youtube' | 'other';
   mediaUrl: string;
   embedCode?: string;
-  thumbnailImage?: SanityImageSource;
+  thumbnailImage?: string;
   caption?: string;
   author?: string;
   featuredProduct?: {
@@ -71,7 +69,7 @@ export interface Promo {
   slug: string;
   title: string;
   description?: string;
-  image: SanityImageSource;
+  image: string;
   startDate: string;
   endDate: string;
   ctaText?: string;
@@ -94,7 +92,7 @@ export interface SiteSettings {
   halalCertification?: {
     certificateNumber?: string;
     issuingBody?: string;
-    certificateImage?: SanityImageSource;
+    certificateImage?: string;
   };
   mediaKit?: {
     asset: {
@@ -104,7 +102,7 @@ export interface SiteSettings {
   defaultSeo?: {
     metaTitle?: string;
     metaDescription?: string;
-    ogImage?: SanityImageSource;
+    ogImage?: string;
   };
 }
 

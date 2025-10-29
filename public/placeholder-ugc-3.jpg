@@ -1,0 +1,9 @@
+<!-- SVG placeholder for UGC content -->
+<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="400" fill="#FF7A1A"/>
+  <circle cx="200" cy="200" r="60" fill="white" opacity="0.8"/>
+  <text x="50%" y="80%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="white">
+    @snackreview
+  </text>
+</svg>
+

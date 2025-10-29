@@ -2,19 +2,18 @@ import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { MapPin, Clock, Phone, ExternalLink } from 'lucide-react';
-import { urlFor } from '@/lib/sanity.queries';
 import type { Retailer } from '@/lib/types';
 
 interface StoreCardProps {
   retailer: Retailer;
   distance?: number;
-  locale: string;
+  locale?: string;
+  isSelected?: boolean;
+  onClick?: () => void;
 }
 
-export function StoreCard({ retailer, distance, locale }: StoreCardProps) {
-  const logoUrl = retailer.logo
-    ? urlFor(retailer.logo).width(120).height(60).url()
-    : null;
+export function StoreCard({ retailer, distance, locale, isSelected, onClick }: StoreCardProps) {
+  const logoUrl = retailer.logo || null;
 
   const getDirectionsUrl = () => {
     if (retailer.geocode) {
@@ -26,7 +25,10 @@ export function StoreCard({ retailer, distance, locale }: StoreCardProps) {
   };
 
   return (
-    <Card>
+    <Card 
+      className={`cursor-pointer transition-all ${isSelected ? 'ring-2 ring-flame-red shadow-lg' : 'hover:shadow-md'}`}
+      onClick={onClick}
+    >
       <CardContent className="p-4">
         <div className="space-y-3">
           {/* Header with logo/name */}

@@ -136,6 +136,7 @@
   },
   "storeLocator": {
     "title": "Find Dana Dana Near You",
+    "description": "Discover where to buy your favourite puff snacks at stores near you or order online",
     "search": {
       "placeholder": "Enter city or postcode",
       "cta": "Search",
