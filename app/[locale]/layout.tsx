@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation';
 import { locales, localeDirections, type Locale } from '@/i18n';
 import Navigation from '@/components/layout/navigation';
 import Footer from '@/components/layout/footer';
+import { SmoothScrollProvider } from '@/components/scroll';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -53,11 +54,13 @@ export default async function LocaleLayout({
         className={`${inter.variable} ${bungee.variable} font-body antialiased`}
       >
         <NextIntlClientProvider messages={messages}>
-          <div className="flex min-h-screen flex-col">
-            <Navigation locale={locale as Locale} />
-            <main className="flex-1">{children}</main>
-            <Footer locale={locale as Locale} />
-          </div>
+          <SmoothScrollProvider>
+            <div className="flex min-h-screen flex-col">
+              <Navigation locale={locale as Locale} />
+              <main className="flex-1">{children}</main>
+              <Footer locale={locale as Locale} />
+            </div>
+          </SmoothScrollProvider>
         </NextIntlClientProvider>
       </body>
     </html>

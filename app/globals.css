@@ -126,4 +126,41 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Smooth scroll performance optimizations */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  
+  /* GPU acceleration for animated elements */
+  [data-animated="true"] {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+  
+  /* Optimize font rendering */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  
+  /* Optimize image loading */
+  img {
+    content-visibility: auto;
+  }
 }
