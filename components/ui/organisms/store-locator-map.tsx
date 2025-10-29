@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import { useTranslations } from 'next-intl';
 import type { Retailer } from '@/lib/types';
 import { StoreCard } from '../molecules/store-card';
 import { Input } from '../input';
@@ -13,6 +14,7 @@ interface StoreLocatorMapProps {
 }
 
 export default function StoreLocatorMap({ retailers, locale }: StoreLocatorMapProps) {
+  const t = useTranslations('storeLocator');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCountry, setSelectedCountry] = useState<string>('all');
   const [selectedStore, setSelectedStore] = useState<Retailer | null>(null);
@@ -22,9 +24,13 @@ export default function StoreLocatorMap({ retailers, locale }: StoreLocatorMapPr
     const countrySet = new Set(retailers.map(r => r.country));
     return Array.from(countrySet).map(code => ({
       code,
-      name: code === 'GB' ? 'United Kingdom' : code === 'IQ' ? 'Iraq (Kurdistan)' : code
+      name: code === 'GB' 
+        ? (locale === 'ckb' ? 'شانشینی یەکگرتوو' : locale === 'ar' ? 'المملكة المتحدة' : 'United Kingdom')
+        : code === 'IQ' 
+        ? (locale === 'ckb' ? 'عێراق (کوردستان)' : locale === 'ar' ? 'العراق (كردستان)' : 'Iraq (Kurdistan)')
+        : code
     }));
-  }, [retailers]);
+  }, [retailers, locale]);
 
   // Filter retailers
   const filteredRetailers = useMemo(() => {
@@ -111,7 +117,7 @@ export default function StoreLocatorMap({ retailers, locale }: StoreLocatorMapPr
 
             {/* Map attribution */}
             <div className="absolute bottom-4 right-4 bg-white/90 px-3 py-1 rounded text-xs text-neutral-600">
-              Interactive Store Map (Demo)
+              {t('interactiveMap')}
             </div>
           </div>
         </div>
@@ -125,7 +131,7 @@ export default function StoreLocatorMap({ retailers, locale }: StoreLocatorMapPr
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-400" />
             <Input
               type="text"
-              placeholder="Search by city, store name, or address..."
+              placeholder={t('search.placeholder')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10"
@@ -134,10 +140,10 @@ export default function StoreLocatorMap({ retailers, locale }: StoreLocatorMapPr
 
           <Select value={selectedCountry} onValueChange={setSelectedCountry}>
             <SelectTrigger>
-              <SelectValue placeholder="Filter by country" />
+              <SelectValue placeholder={t('searchPlaceholder')} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All Countries</SelectItem>
+              <SelectItem value="all">{t('allCountries')}</SelectItem>
               {countries.map(country => (
                 <SelectItem key={country.code} value={country.code}>
                   {country.name}
@@ -149,7 +155,7 @@ export default function StoreLocatorMap({ retailers, locale }: StoreLocatorMapPr
 
         {/* Results count */}
         <div className="text-sm text-neutral-600">
-          {filteredRetailers.length} {filteredRetailers.length === 1 ? 'store' : 'stores'} found
+          {filteredRetailers.length} {filteredRetailers.length === 1 ? t('results.title').split(' ')[0] : t('storesFound')} {t('found')}
         </div>
 
         {/* Store cards */}
@@ -157,8 +163,8 @@ export default function StoreLocatorMap({ retailers, locale }: StoreLocatorMapPr
           {filteredRetailers.length === 0 ? (
             <div className="text-center py-12 text-neutral-500">
               <MapPin className="w-12 h-12 mx-auto mb-4 opacity-50" />
-              <p>No stores found matching your criteria</p>
-              <p className="text-sm mt-2">Try adjusting your search or filters</p>
+              <p>{t('noResults')}</p>
+              <p className="text-sm mt-2">{t('tryAdjusting')}</p>
             </div>
           ) : (
             filteredRetailers.map(retailer => (
@@ -175,4 +181,5 @@ export default function StoreLocatorMap({ retailers, locale }: StoreLocatorMapPr
     </div>
   );
 }
+
 

@@ -81,7 +81,7 @@ export default async function HomePage({ params }: HomePageProps) {
                 {t('story.content')}
               </p>
               <Button asChild size="lg">
-                <Link href={`/${locale}/about`}>Learn More About Us</Link>
+                <Link href={`/${locale}/about`}>{t('learnMore')}</Link>
               </Button>
             </div>
             <div className="relative aspect-square rounded-2xl overflow-hidden">

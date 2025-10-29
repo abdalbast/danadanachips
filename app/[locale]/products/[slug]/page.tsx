@@ -9,6 +9,8 @@ import { HalalBadge } from '@/components/ui/atoms/halal-badge';
 import { ProductCard } from '@/components/ui/molecules/product-card';
 import { MapPin, Share2 } from 'lucide-react';
 import { getProductBySlug } from '@/lib/sanity.queries';
+import { getProductName, getProductDescription, getLocalizedString } from '@/lib/localization';
+import type { Locale } from '@/i18n';
 
 interface ProductDetailPageProps {
   params: Promise<{
@@ -29,6 +31,9 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
   }
 
   const mainImageUrl = product.images[0] || '/placeholder-product.jpg';
+  const productName = getProductName(product, locale as Locale);
+  const productDescription = getProductDescription(product, locale as Locale);
+  const productIngredients = getLocalizedString(product.ingredients, locale as Locale);
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -39,7 +44,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
           <div className="relative aspect-square rounded-2xl overflow-hidden bg-muted">
             <Image
               src={mainImageUrl}
-              alt={product.name}
+              alt={productName}
               fill
               className="object-cover"
               priority
@@ -54,7 +59,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
                 >
                   <Image
                     src={image || '/placeholder-product.jpg'}
-                    alt={`${product.name} ${index + 2}`}
+                    alt={`${productName} ${index + 2}`}
                     fill
                     className="object-cover"
                   />
@@ -69,7 +74,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
           <div className="space-y-4">
             <div className="flex items-start justify-between gap-4">
               <h1 className="font-display text-4xl md:text-5xl font-black text-ink leading-tight">
-                {product.name}
+                {productName}
               </h1>
               <button
                 className="p-2 hover:bg-muted rounded-lg transition-colors"
@@ -91,9 +96,9 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
             )}
           </div>
 
-          {product.description && (
+          {productDescription && (
             <p className="text-lg text-muted-foreground leading-relaxed">
-              {product.description}
+              {productDescription}
             </p>
           )}
 
@@ -160,18 +165,18 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
             )}
           </TabsContent>
           <TabsContent value="ingredients" className="mt-6">
-            {product.ingredients ? (
+            {productIngredients ? (
               <div className="max-w-2xl mx-auto">
                 <h3 className="font-display text-2xl font-bold mb-4">
-                  Ingredients
+                  {t('tabs.ingredients')}
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  {product.ingredients}
+                  {productIngredients}
                 </p>
               </div>
             ) : (
               <p className="text-center text-muted-foreground">
-                Ingredients information coming soon
+                {t('tabs.ingredients')} {locale === 'ckb' ? 'بەزووانە دێت' : locale === 'ar' ? 'قريباً' : 'coming soon'}
               </p>
             )}
           </TabsContent>

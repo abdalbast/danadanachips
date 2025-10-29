@@ -149,7 +149,8 @@
       "hours": "ساعات العمل",
       "visitWebsite": "زيارة الموقع"
     },
-    "noResults": "لم يتم العثور على متاجر في هذه المنطقة"
+    "noResults": "لم يتم العثور على متاجر في هذه المنطقة",
+    "found": "تم العثور عليها"
   },
   "about": {
     "title": "عن دانا دانا",
@@ -225,6 +226,34 @@
     "1": "خفيف",
     "2": "متوسط",
     "3": "حار"
+  },
+  "productCard": {
+    "viewDetails": "عرض التفاصيل"
+  },
+  "storeLocator": {
+    "searchPlaceholder": "ابحث عن المدينة أو اسم المتجر أو العنوان...",
+    "filterByCountry": "تصفية حسب البلد",
+    "allCountries": "جميع البلدان",
+    "storeFound": "متجر",
+    "storesFound": "متاجر",
+    "noStores": "لم يتم العثور على متاجر تطابق معاييرك",
+    "tryAdjusting": "حاول تعديل البحث أو المرشحات",
+    "interactiveMap": "خريطة المتجر التفاعلية (عرض توضيحي)"
+  },
+  "products": {
+    "productFound": "منتج",
+    "productsFound": "منتجات",
+    "allProducts": "جميع المنتجات",
+    "found": "تم العثور عليها"
+  },
+  "ugc": {
+    "clickToView": "انقر على الرابط أدناه لعرض هذا المحتوى على",
+    "viewOn": "عرض على",
+    "featuredProduct": "المنتج المميز:",
+    "by": "بواسطة"
+  },
+  "home": {
+    "learnMore": "اعرف المزيد عنا"
   }
 }
 

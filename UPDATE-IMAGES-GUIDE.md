@@ -192,3 +192,4 @@ If you need assistance updating the images, provide:
 
 **Next Steps**: Once you've downloaded the images, let me know and I can help update the mock data file with the correct paths and real information!
 
+

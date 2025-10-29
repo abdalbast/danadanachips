@@ -7,7 +7,7 @@ export interface LocalizedString {
 export interface Product {
   _id: string;
   slug: string;
-  name: string;
+  name: string | LocalizedString;
   flavour: string;
   heatLevel: 0 | 1 | 2 | 3;
   puffType: 'light' | 'big' | 'extra-puffy';
@@ -15,8 +15,8 @@ export interface Product {
   isHalal: boolean;
   isFeatured?: boolean;
   images: string[];
-  description?: string;
-  ingredients?: string;
+  description?: string | LocalizedString;
+  ingredients?: string | LocalizedString;
   nutritionPer100g?: {
     energy?: string;
     fat?: string;

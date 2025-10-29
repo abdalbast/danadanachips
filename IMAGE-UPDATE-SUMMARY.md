@@ -237,3 +237,4 @@ The following image files are now in use from the `/public/` directory:
 **Last Updated**: October 29, 2025  
 **Next Review**: When new products or brand updates are released
 
+

@@ -5,7 +5,11 @@ export const mockProducts: Product[] = [
   {
     _id: '1',
     slug: 'spicy-chilli',
-    name: 'Spicy Chilli',
+    name: {
+      en: 'Spicy Chilli',
+      ckb: 'چیلی تیژ',
+      ar: 'فلفل حار'
+    },
     flavour: 'Spicy Chilli',
     heatLevel: 3,
     puffType: 'big',
@@ -16,8 +20,16 @@ export const mockProducts: Product[] = [
     isHalal: true,
     isFeatured: true,
     images: ['/494525746_674675695200651_4437922332017011159_n.jpg'],
-    description: 'Our hottest flavour! Packed with fiery chilli and bold spices for those who dare.',
-    ingredients: 'Corn, Vegetable Oil, Chilli Seasoning (Salt, Sugar, Spices, Onion Powder, Garlic Powder)',
+    description: {
+      en: 'Our hottest flavour! Packed with fiery chilli and bold spices for those who dare.',
+      ckb: 'تەمترین تامەکەمان! پڕ لە چیلی گەرم و بەهاراتێکی بەهێز بۆ ئەوانەی دەرەکەن.',
+      ar: 'أحر نكهة لدينا! مليئة بالفلفل الحار والتوابل الجريئة للجرئين.'
+    },
+    ingredients: {
+      en: 'Corn, Vegetable Oil, Chilli Seasoning (Salt, Sugar, Spices, Onion Powder, Garlic Powder)',
+      ckb: 'گەنمەشامی، روێنی نباتات، بەهاراتی چیلی (خوێ، شەکر، بەهارات، پیاز وردکراو، سیر وردکراو)',
+      ar: 'ذرة، زيت نباتي، توابل الفلفل الحار (ملح، سكر، بهارات، مسحوق البصل، مسحوق الثوم)'
+    },
     nutritionPer100g: {
       energy: '2100kJ / 502kcal',
       fat: '28g',
@@ -31,7 +43,11 @@ export const mockProducts: Product[] = [
   {
     _id: '2',
     slug: 'cheese-onion',
-    name: 'Cheese & Onion',
+    name: {
+      en: 'Cheese & Onion',
+      ckb: 'پنیر و پیاز',
+      ar: 'جبن وبصل'
+    },
     flavour: 'Cheese & Onion',
     heatLevel: 0,
     puffType: 'light',
@@ -42,13 +58,25 @@ export const mockProducts: Product[] = [
     isHalal: true,
     isFeatured: true,
     images: ['/495030988_677841384884082_2288565817306550936_n.jpg'],
-    description: 'Classic cheese and onion flavour - a crowd favourite for all occasions.',
-    ingredients: 'Corn, Vegetable Oil, Cheese & Onion Seasoning (Salt, Cheese Powder, Onion Powder, Natural Flavourings)'
+    description: {
+      en: 'Classic cheese and onion flavour - a crowd favourite for all occasions.',
+      ckb: 'تامی کلاسیکی پنیر و پیاز - بەناوبانگترین بۆ هەموو بۆنەکان.',
+      ar: 'نكهة الجبن والبصل الكلاسيكية - مفضلة الجميع لجميع المناسبات.'
+    },
+    ingredients: {
+      en: 'Corn, Vegetable Oil, Cheese & Onion Seasoning (Salt, Cheese Powder, Onion Powder, Natural Flavourings)',
+      ckb: 'گەنمەشامی، روێنی نباتات، بەهاراتی پنیر و پیاز (خوێ، پودری پنیر، پیاز وردکراو، تامە سروشتییەکان)',
+      ar: 'ذرة، زيت نباتي، توابل الجبن والبصل (ملح، مسحوق الجبن، مسحوق البصل، نكهات طبيعية)'
+    }
   },
   {
     _id: '3',
     slug: 'bbq-blast',
-    name: 'BBQ Blast',
+    name: {
+      en: 'BBQ Blast',
+      ckb: 'تامی شلکان',
+      ar: 'نكهة الشواء'
+    },
     flavour: 'BBQ',
     heatLevel: 1,
     puffType: 'big',
@@ -59,13 +87,25 @@ export const mockProducts: Product[] = [
     isHalal: true,
     isFeatured: true,
     images: ['/493481470_677838411551046_8595512445647403553_n.jpg'],
-    description: 'Smoky barbecue flavour with a hint of sweetness. Perfect for any gathering.',
-    ingredients: 'Corn, Vegetable Oil, BBQ Seasoning (Salt, Sugar, Paprika, Smoked Paprika, Spices)'
+    description: {
+      en: 'Smoky barbecue flavour with a hint of sweetness. Perfect for any gathering.',
+      ckb: 'تامی شلکان لەگەڵ پێکەوە شیرینی. تەواو بۆ هەر کۆبوونەوەیەک.',
+      ar: 'نكهة الشواء المدخنة مع لمحة من الحلاوة. مثالية لأي تجمع.'
+    },
+    ingredients: {
+      en: 'Corn, Vegetable Oil, BBQ Seasoning (Salt, Sugar, Paprika, Smoked Paprika, Spices)',
+      ckb: 'گەنمەشامی، روێنی نباتات، بەهاراتی شلکان (خوێ، شەکر، پاپریکا، پاپریکای وەکوتوو، بەهارات)',
+      ar: 'ذرة، زيت نباتي، توابل الشواء (ملح، سكر، فلفل أحمر، فلفل أحمر مدخن، بهارات)'
+    }
   },
   {
     _id: '4',
     slug: 'salt-vinegar',
-    name: 'Salt & Vinegar',
+    name: {
+      en: 'Salt & Vinegar',
+      ckb: 'خوێ و سرکە',
+      ar: 'ملح وخل'
+    },
     flavour: 'Salt & Vinegar',
     heatLevel: 0,
     puffType: 'light',
@@ -75,13 +115,25 @@ export const mockProducts: Product[] = [
     isHalal: true,
     isFeatured: false,
     images: ['/499562068_680459471288940_4804510919466937818_n.jpg'],
-    description: 'Tangy vinegar with a perfect balance of salt. Traditional taste with a modern twist.',
-    ingredients: 'Corn, Vegetable Oil, Salt & Vinegar Seasoning (Salt, Sodium Diacetate, Citric Acid)'
+    description: {
+      en: 'Tangy vinegar with a perfect balance of salt. Traditional taste with a modern twist.',
+      ckb: 'سرکەی ترش لەگەڵ هاوسەنگی تەواوی خوێ. تامی نەریتی بە گۆڕانکاری نوێ.',
+      ar: 'خل حامض مع توازن مثالي للملح. طعم تقليدي بلمسة عصرية.'
+    },
+    ingredients: {
+      en: 'Corn, Vegetable Oil, Salt & Vinegar Seasoning (Salt, Sodium Diacetate, Citric Acid)',
+      ckb: 'گەنمەشامی، روێنی نباتات، بەهاراتی خوێ و سرکە (خوێ، سۆدیۆم دیئاستات، ترشاوی سیتریک)',
+      ar: 'ذرة، زيت نباتي، توابل الملح والخل (ملح، أسيتات ثنائي الصوديوم، حمض الستريك)'
+    }
   },
   {
     _id: '5',
     slug: 'sour-cream',
-    name: 'Sour Cream & Chive',
+    name: {
+      en: 'Sour Cream & Chive',
+      ckb: 'قایماخ و پیازەکەم',
+      ar: 'قشطة حامضة وثوم معمر'
+    },
     flavour: 'Sour Cream & Chive',
     heatLevel: 0,
     puffType: 'extra-puffy',
@@ -92,13 +144,25 @@ export const mockProducts: Product[] = [
     isHalal: true,
     isFeatured: false,
     images: ['/499825860_689995420335345_3114302672824344621_n.jpg'],
-    description: 'Creamy and smooth with a fresh hint of chive. Light and delicious.',
-    ingredients: 'Corn, Vegetable Oil, Sour Cream & Chive Seasoning (Salt, Cream Powder, Onion Powder, Chive)'
+    description: {
+      en: 'Creamy and smooth with a fresh hint of chive. Light and delicious.',
+      ckb: 'قایماکی لیسا لەگەڵ پێکەوە پیازەکەمی تازە. سووک و بەتام.',
+      ar: 'قشطة ناعمة مع لمحة من الثوم المعمر. خفيفة ولذيذة.'
+    },
+    ingredients: {
+      en: 'Corn, Vegetable Oil, Sour Cream & Chive Seasoning (Salt, Cream Powder, Onion Powder, Chive)',
+      ckb: 'گەنمەشامی، روێنی نباتات، بەهاراتی قایماخ و پیازەکەم (خوێ، پودری قایماخ، پیاز وردکراو، پیازەکەم)',
+      ar: 'ذرة، زيت نباتي، توابل القشطة الحامضة والثوم المعمر (ملح، مسحوق القشطة، مسحوق البصل، ثوم معمر)'
+    }
   },
   {
     _id: '6',
     slug: 'paprika',
-    name: 'Sweet Paprika',
+    name: {
+      en: 'Sweet Paprika',
+      ckb: 'پاپریکای شیرین',
+      ar: 'فلفل حلو'
+    },
     flavour: 'Sweet Paprika',
     heatLevel: 1,
     puffType: 'big',
@@ -108,8 +172,16 @@ export const mockProducts: Product[] = [
     isHalal: true,
     isFeatured: false,
     images: ['/503484345_18479970196069200_8996887427835175761_n.jpg'],
-    description: 'Mild and sweet paprika flavour with a gentle warmth.',
-    ingredients: 'Corn, Vegetable Oil, Paprika Seasoning (Salt, Sweet Paprika, Sugar, Spices)'
+    description: {
+      en: 'Mild and sweet paprika flavour with a gentle warmth.',
+      ckb: 'تامی پاپریکای شیرین و نەرم لەگەڵ گەرمی نەرم.',
+      ar: 'نكهة الفلفل الحلو الخفيفة مع دفء لطيف.'
+    },
+    ingredients: {
+      en: 'Corn, Vegetable Oil, Paprika Seasoning (Salt, Sweet Paprika, Sugar, Spices)',
+      ckb: 'گەنمەشامی، روێنی نباتات، بەهاراتی پاپریکا (خوێ، پاپریکای شیرین، شەکر، بەهارات)',
+      ar: 'ذرة، زيت نباتي، توابل الفلفل (ملح، فلفل حلو، سكر، بهارات)'
+    }
   }
 ];
 

@@ -5,8 +5,8 @@ export default createMiddleware({
   // A list of all locales that are supported
   locales,
 
-  // Used when no locale matches
-  defaultLocale: 'en',
+  // Used when no locale matches - Kurdish is default
+  defaultLocale: 'ckb',
 
   // Always use locale prefix
   localePrefix: 'always',

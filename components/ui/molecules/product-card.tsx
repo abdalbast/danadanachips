@@ -2,12 +2,15 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { HeatChip } from '@/components/ui/atoms/heat-chip';
 import { HalalBadge } from '@/components/ui/atoms/halal-badge';
 import { motion } from 'framer-motion';
+import { getProductName, getProductDescription } from '@/lib/localization';
 import type { Product } from '@/lib/types';
+import type { Locale } from '@/i18n';
 
 interface ProductCardProps {
   product: Product;
@@ -15,7 +18,10 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, locale }: ProductCardProps) {
+  const t = useTranslations('productCard');
   const imageUrl = product.images[0] || '/placeholder-product.jpg';
+  const productName = getProductName(product, locale as Locale);
+  const productDescription = getProductDescription(product, locale as Locale);
 
   return (
     <motion.div
@@ -26,7 +32,7 @@ export function ProductCard({ product, locale }: ProductCardProps) {
         <div className="relative aspect-square overflow-hidden bg-muted">
           <Image
             src={imageUrl}
-            alt={product.name}
+            alt={productName}
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-110"
             sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
@@ -41,13 +47,13 @@ export function ProductCard({ product, locale }: ProductCardProps) {
           <div className="space-y-2">
             <div className="flex items-start justify-between gap-2">
               <h3 className="font-display text-lg font-bold leading-tight line-clamp-2">
-                {product.name}
+                {productName}
               </h3>
               <HeatChip level={product.heatLevel} />
             </div>
-            {product.description && (
+            {productDescription && (
               <p className="text-sm text-muted-foreground line-clamp-2">
-                {product.description}
+                {productDescription}
               </p>
             )}
           </div>
@@ -55,7 +61,7 @@ export function ProductCard({ product, locale }: ProductCardProps) {
         <CardFooter className="p-4 pt-0">
           <Button asChild className="w-full" variant="default">
             <Link href={`/${locale}/products/${product.slug}`}>
-              View Details
+              {t('viewDetails')}
             </Link>
           </Button>
         </CardFooter>

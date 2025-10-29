@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ProductCard } from '@/components/ui/molecules/product-card';
 import { FilterBar } from '@/components/ui/molecules/filter-bar';
 import {
@@ -25,6 +26,7 @@ export function ProductGrid({
   locale,
   showFilters = true,
 }: ProductGridProps) {
+  const t = useTranslations('products');
   const [filters, setFilters] = useState<{
     puffType?: string;
     heatLevel?: string;
@@ -69,24 +71,32 @@ export function ProductGrid({
       result = result.filter((p) => p.isHalal);
     }
 
-    // Apply sorting
-    switch (sortBy) {
-      case 'nameAsc':
-        result.sort((a, b) => a.name.localeCompare(b.name));
-        break;
-      case 'nameDesc':
-        result.sort((a, b) => b.name.localeCompare(a.name));
-        break;
-      case 'heatAsc':
-        result.sort((a, b) => a.heatLevel - b.heatLevel);
-        break;
-      case 'heatDesc':
-        result.sort((a, b) => b.heatLevel - a.heatLevel);
-        break;
-    }
+      // Apply sorting - use localized names for comparison
+      switch (sortBy) {
+        case 'nameAsc':
+          result.sort((a, b) => {
+            const nameA = typeof a.name === 'string' ? a.name : (a.name?.[locale as keyof typeof a.name] || a.name?.en || '');
+            const nameB = typeof b.name === 'string' ? b.name : (b.name?.[locale as keyof typeof b.name] || b.name?.en || '');
+            return nameA.localeCompare(nameB, locale === 'ckb' || locale === 'ar' ? 'ar' : 'en');
+          });
+          break;
+        case 'nameDesc':
+          result.sort((a, b) => {
+            const nameA = typeof a.name === 'string' ? a.name : (a.name?.[locale as keyof typeof a.name] || a.name?.en || '');
+            const nameB = typeof b.name === 'string' ? b.name : (b.name?.[locale as keyof typeof b.name] || b.name?.en || '');
+            return nameB.localeCompare(nameA, locale === 'ckb' || locale === 'ar' ? 'ar' : 'en');
+          });
+          break;
+        case 'heatAsc':
+          result.sort((a, b) => a.heatLevel - b.heatLevel);
+          break;
+        case 'heatDesc':
+          result.sort((a, b) => b.heatLevel - a.heatLevel);
+          break;
+      }
 
     return result;
-  }, [products, filters, sortBy]);
+  }, [products, filters, sortBy, locale]);
 
   return (
     <div className="space-y-8">
@@ -101,11 +111,10 @@ export function ProductGrid({
 
           <div className="flex items-center justify-between">
             <p className="text-sm text-muted-foreground">
-              {filteredAndSortedProducts.length} product
-              {filteredAndSortedProducts.length !== 1 && 's'} found
+              {filteredAndSortedProducts.length} {filteredAndSortedProducts.length === 1 ? t('productFound') : t('productsFound')} {t('found')}
             </p>
             <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground">Sort by:</span>
+              <span className="text-sm text-muted-foreground">{t('sort.title')}:</span>
               <Select
                 value={sortBy}
                 onValueChange={(value) => setSortBy(value as SortOption)}
@@ -114,10 +123,10 @@ export function ProductGrid({
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="nameAsc">Name (A-Z)</SelectItem>
-                  <SelectItem value="nameDesc">Name (Z-A)</SelectItem>
-                  <SelectItem value="heatAsc">Heat (Low to High)</SelectItem>
-                  <SelectItem value="heatDesc">Heat (High to Low)</SelectItem>
+                  <SelectItem value="nameAsc">{t('sort.nameAsc')}</SelectItem>
+                  <SelectItem value="nameDesc">{t('sort.nameDesc')}</SelectItem>
+                  <SelectItem value="heatAsc">{t('sort.heatAsc')}</SelectItem>
+                  <SelectItem value="heatDesc">{t('sort.heatDesc')}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -135,13 +144,13 @@ export function ProductGrid({
       ) : (
         <div className="text-center py-16">
           <p className="text-lg text-muted-foreground">
-            No products found matching your filters.
+            {t('noResults')}
           </p>
           <button
             onClick={handleClearFilters}
             className="mt-4 text-flame hover:underline font-medium"
           >
-            Clear all filters
+            {t('filters.clear')}
           </button>
         </div>
       )}

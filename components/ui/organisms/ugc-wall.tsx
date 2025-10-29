@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ReelCard } from '@/components/ui/molecules/reel-card';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import type { UGCContent } from '@/lib/types';
@@ -12,6 +13,7 @@ interface UGCWallProps {
 }
 
 export function UGCWall({ items, title, subtitle }: UGCWallProps) {
+  const t = useTranslations('ugc');
   const [selectedContent, setSelectedContent] = useState<UGCContent | null>(null);
 
   const handleContentClick = (content: UGCContent) => {
@@ -67,7 +69,7 @@ export function UGCWall({ items, title, subtitle }: UGCWallProps) {
                   <div className="space-y-4">
                     <div className="aspect-[9/16] bg-muted flex items-center justify-center rounded-lg">
                       <p className="text-muted-foreground">
-                        Click the link below to view this content
+                        {t('clickToView')} {selectedContent.platform}
                       </p>
                     </div>
                     <a
@@ -76,7 +78,7 @@ export function UGCWall({ items, title, subtitle }: UGCWallProps) {
                       rel="noopener noreferrer"
                       className="block w-full text-center px-4 py-3 bg-flame text-white rounded-lg hover:bg-flame/90 transition-colors font-medium"
                     >
-                      View on {selectedContent.platform}
+                      {t('viewOn')} {selectedContent.platform}
                     </a>
                   </div>
                 )}
@@ -89,7 +91,7 @@ export function UGCWall({ items, title, subtitle }: UGCWallProps) {
                     </p>
                     {selectedContent.author && (
                       <p className="text-sm text-muted-foreground">
-                        by @{selectedContent.author}
+                        {t('by')} @{selectedContent.author}
                       </p>
                     )}
                   </div>
@@ -99,7 +101,7 @@ export function UGCWall({ items, title, subtitle }: UGCWallProps) {
                 {selectedContent.featuredProduct && (
                   <div className="pt-4 border-t">
                     <p className="text-sm text-muted-foreground mb-2">
-                      Featured Product:
+                      {t('featuredProduct')}
                     </p>
                     <a
                       href={`/products/${selectedContent.featuredProduct.slug}`}
