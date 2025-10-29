@@ -4,15 +4,17 @@ This document explains the scroll animation system implemented in the Dana Dana 
 
 ## Overview
 
-The scroll animation system provides:
-- ✨ Smooth scrolling with inertia (via Lenis)
-- 🎯 Section reveals on scroll entry
+The scroll animation system provides a **lightweight, refined experience** inspired by premium design studios:
+- ✨ Smooth scrolling with light inertia (0.8s damping via Lenis)
+- 🎯 Fast, subtle section reveals (0.45-0.5s)
 - 📌 Pinned sections with content progression
-- 🌊 Parallax effects for depth
+- 🌊 Minimal parallax effects (40% reduced intensity)
 - ✍️ Split text typography animations
-- 🎴 Organic card/grid animations
+- 🎴 Quick card/grid animations with micro-jitter
 - ⚡ GPU-optimised performance
 - ♿ Full accessibility support
+
+**Design Philosophy:** Subtle, fast, and refined. Animations should enhance, not distract.
 
 ## Components
 
@@ -33,7 +35,8 @@ export default function Layout({ children }) {
 ```
 
 **Features:**
-- Smooth inertia scrolling at 1.2 damping
+- Lightweight inertia scrolling at 0.8 damping (faster, more responsive)
+- Cubic easing for natural deceleration
 - Respects native wheel/trackpad behaviour
 - Automatically disabled with `prefers-reduced-motion`
 
@@ -57,8 +60,8 @@ import { RevealSection } from '@/components/scroll';
 **Behaviour:**
 - Triggers when section is 15-25% from bottom of viewport
 - Animates only once (no replay on reverse scroll)
-- Y-axis slide: 40px → 0
-- Duration: 0.7s with custom easing
+- Y-axis slide: 20px → 0 (subtle)
+- Duration: 0.5s with light cubic easing [0.16, 1, 0.3, 1]
 
 ### 3. StaggerChildren & StaggerItem
 
@@ -84,7 +87,7 @@ import { StaggerChildren, StaggerItem } from '@/components/scroll';
 - `staggerDelay`: Number - Delay between children (default: 0.1s)
 - `childDelay`: Number - Initial delay before first child (default: 0)
 
-**Stagger timing:** 80-150ms between items
+**Stagger timing:** 50ms between items (fast, refined)
 
 ### 4. PinnedSection
 
@@ -175,9 +178,10 @@ function Section() {
 - `isMobile`: Boolean - Reduces to 4-6% on mobile
 
 **Behaviour:**
-- Foreground: Translates 6-12% on Y-axis, scales 0.98→1.0
-- Background: Translates 12-18% on Y-axis
-- Clamped to 4-6% on mobile (<768px)
+- Foreground: Translates 3-6% on Y-axis (40% reduced), scales 0.99→1.0 (subtle)
+- Background: Translates 5-8% on Y-axis
+- Clamped to 2-3% on mobile (<768px)
+- Overall 40% less intense than default for lightweight feel
 - Disabled with `prefers-reduced-motion`
 
 ### 6. SplitText & SplitWords
@@ -215,9 +219,9 @@ Third line of text`}
 - `stagger`: Number - Delay between lines/words
 
 **Behaviour:**
-- **Lines:** Animate from Y: 28px, stagger: 0.08-0.12s
-- **Words:** Animate from Y: 24px, stagger: 0.03s
-- Duration: 0.6-0.8s with power2.out easing
+- **Lines:** Animate from Y: 16px, stagger: 0.1s (subtle, fast)
+- **Words:** Animate from Y: 12px, stagger: 0.03s
+- Duration: 0.4-0.5s with light cubic easing
 - Opacity: 0 → 1
 
 ### 7. AnimatedCard & AnimatedGrid
@@ -251,9 +255,10 @@ import { AnimatedCard, AnimatedGrid, GridItem } from '@/components/scroll';
 - `delay`: Number - Base delay before animation
 
 **Behaviour:**
-- Fade and slide up from Y: 32px
-- Random jitter: ±40ms for organic feel
-- Base stagger: 80ms between cards
+- Fade and slide up from Y: 16px (subtle)
+- Random jitter: ±20ms for organic micro-variation
+- Base stagger: 50ms between cards (fast)
+- Duration: 0.45s with light easing
 - GPU-optimised with `translateZ(0)`
 
 ## Accessibility
