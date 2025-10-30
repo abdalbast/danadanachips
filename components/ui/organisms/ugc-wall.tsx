@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { ReelCard } from '@/components/ui/molecules/reel-card';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import type { UGCContent } from '@/lib/types';
 
 interface UGCWallProps {
@@ -57,7 +57,13 @@ export function UGCWall({ items, title, subtitle }: UGCWallProps) {
         <Dialog open={!!selectedContent} onOpenChange={handleClose}>
           <DialogContent className="max-w-2xl max-h-[90vh] overflow-auto p-0">
             {selectedContent && (
-              <div className="space-y-4 p-6">
+              <>
+                <DialogTitle className="sr-only">
+                  {selectedContent.author
+                    ? `${t('viewOn')} ${selectedContent.platform} ${t('by')} @${selectedContent.author}`
+                    : `${t('viewOn')} ${selectedContent.platform}`}
+                </DialogTitle>
+                <div className="space-y-4 p-6">
                 {/* If embed code exists, use it */}
                 {selectedContent.embedCode ? (
                   <div
@@ -111,7 +117,8 @@ export function UGCWall({ items, title, subtitle }: UGCWallProps) {
                     </a>
                   </div>
                 )}
-              </div>
+                </div>
+              </>
             )}
           </DialogContent>
         </Dialog>

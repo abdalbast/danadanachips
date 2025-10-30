@@ -49,7 +49,8 @@
       "cta": "Subscribe",
       "success": "Thanks for subscribing!",
       "error": "Please enter a valid email"
-    }
+    },
+    "learnMore": "Learn More About Us"
   },
   "products": {
     "title": "All Flavours",
@@ -73,7 +74,11 @@
       "viewDetails": "View Details",
       "findNearMe": "Find Near Me"
     },
-    "noResults": "No products found matching your filters"
+    "noResults": "No products found matching your filters",
+    "productFound": "product",
+    "productsFound": "products",
+    "allProducts": "All Products",
+    "found": "found"
   },
   "productDetail": {
     "tabs": {
@@ -142,6 +147,14 @@
       "cta": "Search",
       "useLocation": "Use My Location"
     },
+    "searchPlaceholder": "Search by city, store name, or address...",
+    "filterByCountry": "Filter by country",
+    "allCountries": "All Countries",
+    "storeFound": "store",
+    "storesFound": "stores",
+    "noStores": "No stores found matching your criteria",
+    "tryAdjusting": "Try adjusting your search or filters",
+    "interactiveMap": "Interactive Store Map (Demo)",
     "results": {
       "title": "Nearby Retailers",
       "distance": "km away",
@@ -150,7 +163,8 @@
       "hours": "Opening Hours",
       "visitWebsite": "Visit Website"
     },
-    "noResults": "No retailers found in this area"
+    "noResults": "No retailers found in this area",
+    "found": "found"
   },
   "about": {
     "title": "About Dana Dana",
@@ -230,30 +244,11 @@
   "productCard": {
     "viewDetails": "View Details"
   },
-  "storeLocator": {
-    "searchPlaceholder": "Search by city, store name, or address...",
-    "filterByCountry": "Filter by country",
-    "allCountries": "All Countries",
-    "storeFound": "store",
-    "storesFound": "stores",
-    "noStores": "No stores found matching your criteria",
-    "tryAdjusting": "Try adjusting your search or filters",
-    "interactiveMap": "Interactive Store Map (Demo)"
-  },
-  "products": {
-    "productFound": "product",
-    "productsFound": "products",
-    "allProducts": "All Products",
-    "found": "found"
-  },
   "ugc": {
     "clickToView": "Click the link below to view this content on",
     "viewOn": "View on",
     "featuredProduct": "Featured Product:",
     "by": "by"
-  },
-  "home": {
-    "learnMore": "Learn More About Us"
   }
 }
 

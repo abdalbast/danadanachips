@@ -8,16 +8,18 @@ import Navigation from '@/components/layout/navigation';
 import Footer from '@/components/layout/footer';
 
 const inter = Inter({
-  subsets: ['latin'],
+  subsets: ['latin', 'arabic'], // Added 'arabic' for Kurdish and Arabic support
   variable: '--font-inter',
-  display: 'swap',
+  display: 'optional', // Changed from 'swap' to prevent font flash
+  preload: true,
 });
 
 const bungee = Bungee({
   subsets: ['latin'],
   weight: '400',
   variable: '--font-bungee',
-  display: 'swap',
+  display: 'optional', // Changed from 'swap' to prevent font flash
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -50,7 +52,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} dir={direction} suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${bungee.variable} font-body antialiased`}
+        className={`${inter.variable} ${bungee.variable} font-sans antialiased`}
       >
         <NextIntlClientProvider messages={messages}>
           <div className="flex min-h-screen flex-col">

@@ -49,7 +49,8 @@
       "cta": "اشترك",
       "success": "شكرًا لاشتراكك!",
       "error": "يرجى إدخال بريد إلكتروني صحيح"
-    }
+    },
+    "learnMore": "اعرف المزيد عنا"
   },
   "products": {
     "title": "جميع النكهات",
@@ -73,7 +74,11 @@
       "viewDetails": "عرض التفاصيل",
       "findNearMe": "ابحث عن أقرب متجر"
     },
-    "noResults": "لم يتم العثور على منتجات مطابقة"
+    "noResults": "لم يتم العثور على منتجات مطابقة",
+    "productFound": "منتج",
+    "productsFound": "منتجات",
+    "allProducts": "جميع المنتجات",
+    "found": "تم العثور عليها"
   },
   "productDetail": {
     "tabs": {
@@ -136,11 +141,20 @@
   },
   "storeLocator": {
     "title": "ابحث عن دانا دانا بالقرب منك",
+    "description": "اكتشف أين يمكنك شراء وجباتك الخفيفة المفضلة في المتاجر القريبة أو اطلب عبر الإنترنت",
     "search": {
       "placeholder": "أدخل المدينة أو الرمز البريدي",
       "cta": "بحث",
       "useLocation": "استخدم موقعي"
     },
+    "searchPlaceholder": "ابحث عن المدينة أو اسم المتجر أو العنوان...",
+    "filterByCountry": "تصفية حسب البلد",
+    "allCountries": "جميع البلدان",
+    "storeFound": "متجر",
+    "storesFound": "متاجر",
+    "noStores": "لم يتم العثور على متاجر تطابق معاييرك",
+    "tryAdjusting": "حاول تعديل البحث أو المرشحات",
+    "interactiveMap": "خريطة المتجر التفاعلية (عرض توضيحي)",
     "results": {
       "title": "المتاجر القريبة",
       "distance": "كم",
@@ -230,30 +244,11 @@
   "productCard": {
     "viewDetails": "عرض التفاصيل"
   },
-  "storeLocator": {
-    "searchPlaceholder": "ابحث عن المدينة أو اسم المتجر أو العنوان...",
-    "filterByCountry": "تصفية حسب البلد",
-    "allCountries": "جميع البلدان",
-    "storeFound": "متجر",
-    "storesFound": "متاجر",
-    "noStores": "لم يتم العثور على متاجر تطابق معاييرك",
-    "tryAdjusting": "حاول تعديل البحث أو المرشحات",
-    "interactiveMap": "خريطة المتجر التفاعلية (عرض توضيحي)"
-  },
-  "products": {
-    "productFound": "منتج",
-    "productsFound": "منتجات",
-    "allProducts": "جميع المنتجات",
-    "found": "تم العثور عليها"
-  },
   "ugc": {
     "clickToView": "انقر على الرابط أدناه لعرض هذا المحتوى على",
     "viewOn": "عرض على",
     "featuredProduct": "المنتج المميز:",
     "by": "بواسطة"
-  },
-  "home": {
-    "learnMore": "اعرف المزيد عنا"
   }
 }
 
