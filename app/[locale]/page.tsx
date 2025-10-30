@@ -85,11 +85,13 @@ export default async function HomePage({ params }: HomePageProps) {
               </Button>
             </div>
             <div className="relative aspect-square rounded-2xl overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-flame/20 to-corn/20" />
-              {/* Placeholder for brand image */}
-              <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
-                <span className="text-sm">Brand Story Image</span>
-              </div>
+              <Image
+                src="/Brand Story.png"
+                alt={t('story.title')}
+                fill
+                className="object-cover rounded-2xl"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
             </div>
           </div>
         </div>
