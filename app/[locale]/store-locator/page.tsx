@@ -3,6 +3,8 @@ import { getTranslations } from 'next-intl/server';
 import { getAllRetailers } from '@/lib/sanity.queries';
 import StoreLocatorMap from '@/components/ui/organisms/store-locator-map';
 
+export const dynamic = 'force-static';
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'storeLocator' });
@@ -40,5 +42,6 @@ export default async function StoreLocatorPage({ params }: { params: Promise<{ l
     </div>
   );
 }
+
 
 

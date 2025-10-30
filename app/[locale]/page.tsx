@@ -10,6 +10,8 @@ import Image from 'next/image';
 import { getFeaturedProducts, getActiveUGC } from '@/lib/sanity.queries';
 import type { Product, UGCContent } from '@/lib/types';
 
+export const dynamic = 'force-static';
+
 interface HomePageProps {
   params: Promise<{
     locale: string;

@@ -2,6 +2,8 @@ import { getTranslations } from 'next-intl/server';
 import { HalalBadge } from '@/components/ui/atoms/halal-badge';
 import { Award, Heart, Users, CheckCircle2 } from 'lucide-react';
 
+export const dynamic = 'force-static';
+
 interface AboutPageProps {
   params: Promise<{
     locale: string;

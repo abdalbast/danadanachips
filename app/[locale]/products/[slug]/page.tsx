@@ -12,11 +12,22 @@ import { getProductBySlug } from '@/lib/sanity.queries';
 import { getProductName, getProductDescription, getLocalizedString } from '@/lib/localization';
 import type { Locale } from '@/i18n';
 
+export const dynamic = 'force-static';
+
 interface ProductDetailPageProps {
   params: Promise<{
     locale: string;
     slug: string;
   }>;
+}
+
+export async function generateStaticParams() {
+  const { mockProducts } = await import('@/lib/mock-data');
+  const { locales } = await import('@/i18n');
+  
+  return locales.flatMap((locale) =>
+    mockProducts.map((p) => ({ locale, slug: p.slug }))
+  );
 }
 
 export default async function ProductDetailPage({ params }: ProductDetailPageProps) {

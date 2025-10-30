@@ -14,7 +14,11 @@ export function urlFor(source: string | undefined) {
 export async function getAllProducts(locale: string = 'en'): Promise<Product[]> {
   // Simulate async behaviour
   await new Promise(resolve => setTimeout(resolve, 10));
-  return [...mockProducts].sort((a, b) => a.name.localeCompare(b.name));
+  return [...mockProducts].sort((a, b) => {
+    const nameA = typeof a.name === 'string' ? a.name : (a.name[locale as keyof typeof a.name] || a.name.en || '');
+    const nameB = typeof b.name === 'string' ? b.name : (b.name[locale as keyof typeof b.name] || b.name.en || '');
+    return nameA.localeCompare(nameB);
+  });
 }
 
 export async function getFeaturedProducts(locale: string = 'en'): Promise<Product[]> {

@@ -1,6 +1,8 @@
 import { MetadataRoute } from 'next';
 import { locales } from '@/i18n';
 
+export const dynamic = 'force-static';
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.danadanachips.com';
 
@@ -47,4 +49,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return staticRoutes;
 }
+
 

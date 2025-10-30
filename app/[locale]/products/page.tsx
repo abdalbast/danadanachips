@@ -2,6 +2,8 @@ import { getTranslations } from 'next-intl/server';
 import { ProductGrid } from '@/components/ui/organisms/product-grid';
 import { getAllProducts } from '@/lib/sanity.queries';
 
+export const dynamic = 'force-static';
+
 interface ProductsPageProps {
   params: Promise<{
     locale: string;

@@ -5,6 +5,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { Label } from '@/components/ui/label';
 
+export const dynamic = 'force-static';
+
 interface ContactPageProps {
   params: Promise<{
     locale: string;

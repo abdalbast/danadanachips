@@ -35,3 +35,4 @@ export function HalalBadge({ className, size = 'md' }: HalalBadgeProps) {
   );
 }
 
+

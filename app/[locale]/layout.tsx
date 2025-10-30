@@ -7,8 +7,10 @@ import { locales, localeDirections, type Locale } from '@/i18n';
 import Navigation from '@/components/layout/navigation';
 import Footer from '@/components/layout/footer';
 
+export const dynamic = 'force-static';
+
 const inter = Inter({
-  subsets: ['latin', 'arabic'], // Added 'arabic' for Kurdish and Arabic support
+  subsets: ['latin'], // Inter doesn't support 'arabic' subset
   variable: '--font-inter',
   display: 'optional', // Changed from 'swap' to prevent font flash
   preload: true,

@@ -8,6 +8,8 @@ import { getAllProducts } from '@/lib/sanity.queries';
 import { calculateProductMatch, filterProductsByQuiz, getMoodMessage } from '@/lib/quiz-logic';
 import type { QuizAnswers } from '@/lib/quiz-logic';
 
+export const dynamic = 'force-static';
+
 interface QuizResultsPageProps {
   params: Promise<{
     locale: string;
