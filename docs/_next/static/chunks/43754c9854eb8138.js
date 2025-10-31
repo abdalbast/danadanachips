@@ -1,1 +1,0 @@
-(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,31713,t=>{"use strict";var e=t.i(71645);function c(){return(0,e.useEffect)(()=>{window.location.replace("ckb/")},[]),null}t.s(["default",()=>c])}]);

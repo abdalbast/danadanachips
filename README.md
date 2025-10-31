@@ -137,6 +137,33 @@ Add the same variables from `.env.local` to your Vercel project settings.
 2. Create a new webhook pointing to: `https://your-domain.com/api/revalidate`
 3. Select triggers: On create/update/delete for Product, Retailer, UGC, Promo
 
+### GitHub Pages
+
+To deploy to GitHub Pages (e.g., at `username.github.io/danadanachips`):
+
+1. **Temporarily modify `next.config.ts`** to add GitHub Pages configuration:
+   ```typescript
+   const nextConfig: NextConfig = {
+     output: 'export',
+     basePath: '/danadanachips',        // Add this line
+     assetPrefix: '/danadanachips/',    // Add this line
+     trailingSlash: true,
+     // ... rest of config
+   };
+   ```
+
+2. **Build the static site:**
+   ```bash
+   npm run build:pages
+   ```
+   This creates the `docs/` folder with your static site.
+
+3. **Push to GitHub** and configure GitHub Pages to serve from the `docs/` folder on your main branch.
+
+4. **Revert the config changes** in `next.config.ts` after building (remove the `basePath` and `assetPrefix` lines) so local development works correctly.
+
+**Note:** The `basePath` and `assetPrefix` settings break local development, which is why they're not in the config by default. Only add them temporarily when building for GitHub Pages deployment.
+
 ## 📊 Performance
 
 - **Lighthouse Scores (Target):**
