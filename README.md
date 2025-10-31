@@ -106,21 +106,32 @@ Answers are mapped to product attributes:
 
 Add environment variables from `.env.local` to your Vercel project settings (if using Google Maps).
 
-### GitHub Pages (Automated)
+### GitHub Pages
 
-The website is configured for automatic deployment to GitHub Pages using GitHub Actions.
+To deploy to GitHub Pages (e.g., at `username.github.io/danadanachips`):
 
-**Setup:**
-1. Enable GitHub Pages in repository Settings → Pages → Source: **GitHub Actions**
-2. Push to `main` or `master` branch - deployment happens automatically!
+1. **Temporarily modify `next.config.ts`** to add GitHub Pages configuration:
+   ```typescript
+   const nextConfig: NextConfig = {
+     output: 'export',
+     basePath: '/danadanachips',        // Add this line
+     assetPrefix: '/danadanachips/',    // Add this line
+     trailingSlash: true,
+     // ... rest of config
+   };
+   ```
 
-**How it works:**
-- GitHub Actions workflow (`.github/workflows/deploy.yml`) automatically builds and deploys
-- Configuration is handled automatically - no manual changes needed
-- `basePath` is set automatically based on repository name
-- Static export is enabled only during CI build (development remains dynamic)
+2. **Build the static site:**
+   ```bash
+   npm run build:pages
+   ```
+   This creates the `docs/` folder with your static site.
 
-**See [GITHUB-PAGES-DEPLOYMENT.md](./GITHUB-PAGES-DEPLOYMENT.md) for detailed setup instructions and troubleshooting.**
+3. **Push to GitHub** and configure GitHub Pages to serve from the `docs/` folder on your main branch.
+
+4. **Revert the config changes** in `next.config.ts` after building (remove the `basePath` and `assetPrefix` lines) so local development works correctly.
+
+**Note:** The `basePath` and `assetPrefix` settings break local development, which is why they're not in the config by default. Only add them temporarily when building for GitHub Pages deployment.
 
 ## 📊 Performance
 

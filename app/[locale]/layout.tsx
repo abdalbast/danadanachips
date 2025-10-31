@@ -6,12 +6,9 @@ import { locales, localeDirections, type Locale } from '@/i18n';
 import Navigation from '@/components/layout/navigation';
 import Footer from '@/components/layout/footer';
 
-// Dynamic rendering: Required for development (next-intl uses headers())
-// For static export (GitHub Pages), Next.js will use generateStaticParams() to pre-generate routes
-// During static generation, locale comes from params, not headers
-export const dynamic = process.env.NODE_ENV === 'production' && process.env.GITHUB_ACTIONS === 'true' 
-  ? 'force-static' 
-  : 'force-dynamic';
+// Required: next-intl's getMessages() uses headers() which requires dynamic rendering
+// Do not change to 'force-static' as it conflicts with static export + next-intl
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Dana Dana Chips - Taste the Pop. Love the Crunch.',
@@ -37,7 +34,7 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  const messages = await getMessages({ locale });
+  const messages = await getMessages();
   const direction = localeDirections[locale as Locale];
 
   return (

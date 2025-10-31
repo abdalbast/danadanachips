@@ -21,17 +21,9 @@ export default getRequestConfig(async ({ requestLocale }) => {
   // This typically corresponds to the `[locale]` segment
   let locale = await requestLocale;
 
-  // During static generation (build time), requestLocale might be undefined
-  // In that case, we'll use the locale from params via generateStaticParams()
-  // For runtime, validate that the incoming `locale` parameter is valid
-  if (locale && !locales.includes(locale as Locale)) {
+  // Validate that the incoming `locale` parameter is valid
+  if (!locale || !locales.includes(locale as Locale)) {
     return notFound();
-  }
-
-  // If no locale is provided (during static generation), use default
-  // This should not happen if generateStaticParams() is working correctly
-  if (!locale) {
-    locale = 'ckb'; // Default locale
   }
 
   return {

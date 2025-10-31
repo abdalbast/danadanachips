@@ -1,155 +1,159 @@
-# GitHub Pages Deployment
+# GitHub Pages Deployment Guide
 
 ## Overview
+Your Dana Dana Chips website is now configured to automatically deploy to GitHub Pages using GitHub Actions.
 
-This document explains how the GitHub Pages deployment works and how to configure it.
-
-## How It Works
+## What's Been Set Up
 
 ### 1. GitHub Actions Workflow
+- **File:** `.github/workflows/deploy.yml`
+- **Triggers:** Automatically runs on pushes to `main` or `master` branch
+- **Process:**
+  - Builds the Next.js static site
+  - Configures the correct `basePath` for GitHub Pages
+  - Uploads the build to GitHub Pages
+  - Deploys automatically
 
-The `.github/workflows/deploy.yml` workflow automatically:
-- Builds the Next.js app with static export enabled
-- Sets environment variables for GitHub Pages (`GITHUB_ACTIONS=true`, `NODE_ENV=production`)
-- Configures the correct `basePath` based on repository name
-- Deploys the static files to GitHub Pages
+### 2. Static Export Configuration
+- **File:** `next.config.ts`
+- Static export enabled with `output: 'export'`
+- Dynamic `basePath` detection (only applies in CI environment)
+- Trailing slashes enabled for better GitHub Pages compatibility
 
-### 2. Configuration
+### 3. Jekyll Bypass
+- **File:** `public/.nojekyll`
+- Prevents GitHub Pages from processing files with Jekyll
+- Ensures `_next` directory is accessible
 
-#### `next.config.ts`
-- Conditionally enables `output: 'export'` when `GITHUB_ACTIONS=true`
-- Automatically sets `basePath` and `assetPrefix` based on repository name
-- Only applies in CI environment, so local development works normally
+## Deployment Steps
 
-#### `app/[locale]/layout.tsx` and `app/[locale]/page.tsx`
-- Uses conditional dynamic rendering:
-  - `force-static` during GitHub Actions build (for static export)
-  - `force-dynamic` during local development (allows server-side features)
-- Uses `generateStaticParams()` to pre-generate all locale routes
+### Step 1: Commit and Push Changes
+```bash
+cd dana-dana-chips
+git add .
+git commit -m "feat: add GitHub Pages deployment workflow"
+git push origin main
+```
 
-#### `i18n.ts`
-- Handles locale resolution during static generation
-- Falls back to default locale if `requestLocale` is undefined (during build)
-
-### 3. Static Generation Process
-
-During GitHub Actions build:
-1. `generateStaticParams()` provides all locales: `['en', 'ar', 'ckb']`
-2. Next.js pre-generates routes for each locale: `/en/`, `/ar/`, `/ckb/`
-3. `getMessages({ locale })` is called with explicit locale from params
-4. Static HTML files are generated in `out/` directory
-5. Files are deployed to GitHub Pages
-
-## Setup Instructions
-
-### Step 1: Enable GitHub Pages
-
-1. Go to your repository on GitHub
+### Step 2: Enable GitHub Pages
+1. Go to your GitHub repository: `https://github.com/abdalbast/danadanachips`
 2. Navigate to **Settings** → **Pages**
 3. Under **Source**, select:
    - **Source:** GitHub Actions
 4. Save the settings
 
-### Step 2: Push Changes
-
-The workflow automatically runs on push to `main` or `master` branch:
-
-```bash
-git add .
-git commit -m "Configure GitHub Pages deployment"
-git push origin main
-```
-
-### Step 3: Verify Deployment
-
+### Step 3: Trigger Deployment
+The workflow will automatically run on your next push, or you can:
 1. Go to **Actions** tab in your repository
-2. Wait for the workflow to complete (green checkmark)
-3. Visit your site at: `https://<username>.github.io/<repository-name>/`
+2. Select "Deploy Next.js to GitHub Pages" workflow
+3. Click **Run workflow** → **Run workflow**
+
+### Step 4: Access Your Site
+Once deployed, your site will be available at:
+- **Main URL:** `https://abdalbast.github.io/danadanachips/`
+- **English:** `https://abdalbast.github.io/danadanachips/en/`
+- **Arabic:** `https://abdalbast.github.io/danadanachips/ar/`
+- **Kurdish:** `https://abdalbast.github.io/danadanachips/ckb/`
 
 ## Troubleshooting
 
-### Build Fails with "headers()" Error
+### 404 Errors
+If you see 404 errors:
+1. Verify GitHub Pages is enabled and set to "GitHub Actions"
+2. Check that the workflow completed successfully in the Actions tab
+3. Ensure the repository name matches (currently set to use `GITHUB_REPOSITORY` env variable)
 
-**Cause:** `getMessages()` is trying to use headers during static generation.
+### Workflow Fails
+If the workflow fails:
+1. Check the Actions tab for error logs
+2. Ensure Node.js 20 is compatible with all dependencies
+3. Verify `package-lock.json` is committed
 
-**Solution:** Ensure `getMessages({ locale })` is called with explicit locale parameter:
-```typescript
-const messages = await getMessages({ locale });
-```
+### Routing Issues
+The site uses:
+- **Default locale:** Kurdish (`ckb`)
+- **Middleware:** Automatically redirects `/` to `/ckb/`
+- **Locale prefix:** Always included in URLs
 
-### Routes Return 404
+### Base Path Issues
+If assets aren't loading:
+1. The `basePath` is automatically set to `/danadanachips` in CI
+2. Check `next.config.ts` ensures `GITHUB_REPOSITORY` is being read correctly
+3. Verify images use relative paths or Next.js Image component
 
-**Cause:** `generateStaticParams()` might not be returning all locales.
+## Local Development vs Production
 
-**Solution:** Verify `generateStaticParams()` returns all locales:
-```typescript
-export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
-}
-```
+### Local Development
+- Run: `npm run dev`
+- URL: `http://localhost:3000`
+- No `basePath` applied
+- Locales: `/en/`, `/ar/`, `/ckb/`
 
-### Assets Not Loading
+### GitHub Pages Production
+- URL: `https://abdalbast.github.io/danadanachips/`
+- `basePath`: `/danadanachips`
+- Full URLs: `https://abdalbast.github.io/danadanachips/en/`
 
-**Cause:** Incorrect `basePath` configuration.
+## Custom Domain (Optional)
 
-**Solution:** Ensure `GITHUB_REPOSITORY` environment variable is set in workflow:
-```yaml
-env:
-  GITHUB_REPOSITORY: ${{ github.repository }}
-```
+To use a custom domain like `www.danadanachips.com`:
 
-### Development Mode Breaks
+1. Add a `CNAME` file to the `public/` directory:
+   ```bash
+   echo "www.danadanachips.com" > public/CNAME
+   ```
 
-**Cause:** Static export enabled in development.
+2. Configure DNS with your domain provider:
+   - Add a `CNAME` record pointing to `abdalbast.github.io`
 
-**Solution:** Configuration already handles this - static export only enabled when `GITHUB_ACTIONS=true`.
+3. In GitHub Settings → Pages:
+   - Add your custom domain
+   - Enable "Enforce HTTPS"
+
+4. Update `next.config.ts`:
+   ```typescript
+   const nextConfig: NextConfig = {
+     output: 'export',
+     trailingSlash: true,
+     // Remove basePath for custom domain
+     basePath: '',
+     assetPrefix: '',
+     // ... rest of config
+   };
+   ```
 
 ## Environment Variables
 
-The workflow automatically sets:
-- `NODE_ENV=production`
-- `GITHUB_ACTIONS=true`
-- `GITHUB_REPOSITORY=${{ github.repository }}`
-
-These are used by `next.config.ts` to:
-- Enable static export
-- Set correct basePath
-- Configure asset paths
-
-## Custom Domain
-
-To use a custom domain:
-
-1. Add `CNAME` file to `public/` directory:
-   ```bash
-   echo "www.yourdomain.com" > public/CNAME
+If you need environment variables for production:
+1. Go to repository **Settings** → **Secrets and variables** → **Actions**
+2. Add secrets (e.g., `NEXT_PUBLIC_SANITY_PROJECT_ID`)
+3. Reference in workflow:
+   ```yaml
+   - name: Build with Next.js
+     run: npm run build
+     env:
+       NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
    ```
 
-2. Configure DNS:
-   - Add CNAME record pointing to `<username>.github.io`
+## Monitoring
 
-3. Update `next.config.ts` to disable basePath for custom domain:
-   ```typescript
-   // Only set basePath for GitHub Pages project pages
-   ...(isCI && repo && !process.env.CUSTOM_DOMAIN
-     ? {
-         basePath: `/${repo}`,
-         assetPrefix: `/${repo}/`,
-       }
-     : {}),
-   ```
+- **Build Status:** Check the Actions tab for real-time build logs
+- **Deployment Status:** Green checkmark indicates successful deployment
+- **Build Time:** Typically 2-5 minutes
 
-4. In GitHub Pages settings, add your custom domain
+## Next Steps
 
-## Notes
+1. ✅ Commit the GitHub Actions workflow
+2. ✅ Enable GitHub Pages in repository settings
+3. ✅ Push changes to trigger first deployment
+4. ⏳ Wait for deployment (check Actions tab)
+5. 🎉 Visit your live site!
 
-- Static export means no server-side features (API routes, middleware at runtime)
-- All routes are pre-generated at build time
-- Middleware redirects won't work - use client-side redirects or static redirects
-- Images must be optimized and included in the build output
+## Support
 
-## References
+If you encounter issues:
+- Check GitHub Actions logs for detailed error messages
+- Verify all paths are relative (no hardcoded URLs)
+- Ensure all dependencies are in `package.json`
+- Test the build locally: `npm run build`
 
-- [Next.js Static Exports](https://nextjs.org/docs/app/building-your-application/deploying/static-exports)
-- [GitHub Actions for Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-with-a-custom-github-actions-workflow)
-- [Next-Intl Static Generation](https://next-intl-docs.vercel.app/docs/usage/static-rendering)

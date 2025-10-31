@@ -10,12 +10,9 @@ import Image from 'next/image';
 import { getFeaturedProducts, getActiveUGC } from '@/lib/queries';
 import type { Product, UGCContent } from '@/lib/types';
 
-// Dynamic rendering: Required for development (next-intl uses headers())
-// For static export (GitHub Pages), Next.js will use generateStaticParams() to pre-generate routes
-// During static generation, locale comes from params, not headers
-export const dynamic = process.env.NODE_ENV === 'production' && process.env.GITHUB_ACTIONS === 'true' 
-  ? 'force-static' 
-  : 'force-dynamic';
+// Required: next-intl's getTranslations() uses headers() which requires dynamic rendering
+// Do not change to 'force-static' as it conflicts with static export + next-intl
+export const dynamic = 'force-dynamic';
 
 interface HomePageProps {
   params: Promise<{
