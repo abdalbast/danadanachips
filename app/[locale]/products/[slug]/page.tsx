@@ -32,7 +32,7 @@ export async function generateStaticParams() {
 
 export default async function ProductDetailPage({ params }: ProductDetailPageProps) {
   const { locale, slug } = await params;
-  const t = await getTranslations('productDetail');
+  const t = await getTranslations({ locale, namespace: 'productDetail' });
 
   // Fetch product from Sanity
   const product = await getProductBySlug(slug, locale);

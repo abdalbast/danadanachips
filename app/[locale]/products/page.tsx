@@ -12,7 +12,7 @@ interface ProductsPageProps {
 
 export default async function ProductsPage({ params }: ProductsPageProps) {
   const { locale } = await params;
-  const t = await getTranslations('products');
+  const t = await getTranslations({ locale, namespace: 'products' });
 
   // Fetch all products from Sanity
   const products = await getAllProducts(locale);

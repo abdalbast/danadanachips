@@ -6,10 +6,6 @@ import { locales, localeDirections, type Locale } from '@/i18n';
 import Navigation from '@/components/layout/navigation';
 import Footer from '@/components/layout/footer';
 
-// Required: next-intl's getMessages() uses headers() which requires dynamic rendering
-// Do not change to 'force-static' as it conflicts with static export + next-intl
-export const dynamic = 'force-dynamic';
-
 export const metadata: Metadata = {
   title: 'Dana Dana Chips - Taste the Pop. Love the Crunch.',
   description:
@@ -34,7 +30,7 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  const messages = await getMessages();
+  const messages = await getMessages({ locale });
   const direction = localeDirections[locale as Locale];
 
   return (

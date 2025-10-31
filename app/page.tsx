@@ -1,6 +1,19 @@
-import { redirect } from 'next/navigation';
+'use client';
+
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function RootPage() {
-  redirect('/ckb/');
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace('/ckb/');
+  }, [router]);
+
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+      <p>Redirecting...</p>
+    </div>
+  );
 }
 

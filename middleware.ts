@@ -1,6 +1,8 @@
 import createMiddleware from 'next-intl/middleware';
 import { locales } from './i18n';
 
+// Middleware is skipped during static export (output: 'export')
+// This only runs in development or when deployed with a server
 export default createMiddleware({
   // A list of all locales that are supported
   locales,
@@ -10,6 +12,9 @@ export default createMiddleware({
 
   // Always use locale prefix
   localePrefix: 'always',
+  
+  // Disable locale detection for static export compatibility
+  localeDetection: false,
 });
 
 export const config = {

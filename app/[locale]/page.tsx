@@ -10,10 +10,6 @@ import Image from 'next/image';
 import { getFeaturedProducts, getActiveUGC } from '@/lib/queries';
 import type { Product, UGCContent } from '@/lib/types';
 
-// Required: next-intl's getTranslations() uses headers() which requires dynamic rendering
-// Do not change to 'force-static' as it conflicts with static export + next-intl
-export const dynamic = 'force-dynamic';
-
 interface HomePageProps {
   params: Promise<{
     locale: string;
@@ -22,7 +18,7 @@ interface HomePageProps {
 
 export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
-  const t = await getTranslations('home');
+  const t = await getTranslations({ locale, namespace: 'home' });
 
   // Fetch data from Sanity
   const featuredProducts = await getFeaturedProducts(locale);

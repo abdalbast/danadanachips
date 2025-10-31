@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from 'next-intl/plugin';
 
+// For static export, we need to configure next-intl without middleware
 const withNextIntl = createNextIntlPlugin('./i18n.ts');
 
 // Detect if running in GitHub Actions and set basePath for project pages

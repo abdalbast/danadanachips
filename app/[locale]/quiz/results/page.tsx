@@ -27,7 +27,7 @@ export default async function QuizResultsPage({
 }: QuizResultsPageProps) {
   const { locale } = await params;
   const queryParams = await searchParams;
-  const t = await getTranslations('quiz.results');
+  const t = await getTranslations({ locale, namespace: 'quiz.results' });
 
   // Get quiz answers from URL
   const answers: QuizAnswers = {

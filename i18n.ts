@@ -17,10 +17,8 @@ export const localeDirections: Record<Locale, 'ltr' | 'rtl'> = {
   ckb: 'rtl',
 };
 
-export default getRequestConfig(async ({ requestLocale }) => {
-  // This typically corresponds to the `[locale]` segment
-  let locale = await requestLocale;
-
+export default getRequestConfig(async ({ locale }) => {
+  // For static export, locale comes from the route parameter, not from headers
   // Validate that the incoming `locale` parameter is valid
   if (!locale || !locales.includes(locale as Locale)) {
     return notFound();

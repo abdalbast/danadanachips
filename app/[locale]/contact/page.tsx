@@ -15,7 +15,7 @@ interface ContactPageProps {
 
 export default async function ContactPage({ params }: ContactPageProps) {
   const { locale } = await params;
-  const t = await getTranslations('contact');
+  const t = await getTranslations({ locale, namespace: 'contact' });
 
   return (
     <div className="container mx-auto px-4 py-12">
