@@ -8,7 +8,13 @@ const isCI = process.env.GITHUB_ACTIONS === 'true';
 const repo = process.env.GITHUB_REPOSITORY?.split('/')[1] || '';
 
 const nextConfig: NextConfig = {
-  output: 'export',
+  // IMPORTANT: Conditional static export is required for next-intl compatibility
+  // Static export conflicts with next-intl's server-side functions (getMessages, getTranslations)
+  // which use headers() internally. See TROUBLESHOOTING.md for details.
+  // Only use static export in production/CI when deploying to static hosting
+  ...(process.env.NODE_ENV === 'production' || isCI
+    ? { output: 'export' }
+    : {}),
   trailingSlash: true,
   // Only set basePath for GitHub Pages (project pages); keep root paths for local/dev
   ...(isCI && repo

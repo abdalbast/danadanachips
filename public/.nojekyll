@@ -1,0 +1,7 @@
+# GitHub Pages .nojekyll file
+
+This file tells GitHub Pages to skip Jekyll processing, which is required for Next.js static exports.
+
+Next.js generates files starting with underscores (like `_next/`) which Jekyll would ignore by default.
+This file ensures all Next.js files are served correctly.
+

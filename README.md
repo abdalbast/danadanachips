@@ -49,6 +49,10 @@ NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_google_maps_key
 
 See [structure.md](./structure.md) for detailed project architecture and file organization.
 
+## 🐛 Troubleshooting
+
+If you encounter 404/500 errors with locale routes, see [TROUBLESHOOTING.md](./TROUBLESHOOTING.md) for common issues and solutions, especially regarding Next.js static export compatibility with next-intl.
+
 ## 🌍 Internationalization
 
 The website supports three languages:
@@ -102,32 +106,21 @@ Answers are mapped to product attributes:
 
 Add environment variables from `.env.local` to your Vercel project settings (if using Google Maps).
 
-### GitHub Pages
+### GitHub Pages (Automated)
 
-To deploy to GitHub Pages (e.g., at `username.github.io/danadanachips`):
+The website is configured for automatic deployment to GitHub Pages using GitHub Actions.
 
-1. **Temporarily modify `next.config.ts`** to add GitHub Pages configuration:
-   ```typescript
-   const nextConfig: NextConfig = {
-     output: 'export',
-     basePath: '/danadanachips',        // Add this line
-     assetPrefix: '/danadanachips/',    // Add this line
-     trailingSlash: true,
-     // ... rest of config
-   };
-   ```
+**Setup:**
+1. Enable GitHub Pages in repository Settings → Pages → Source: **GitHub Actions**
+2. Push to `main` or `master` branch - deployment happens automatically!
 
-2. **Build the static site:**
-   ```bash
-   npm run build:pages
-   ```
-   This creates the `docs/` folder with your static site.
+**How it works:**
+- GitHub Actions workflow (`.github/workflows/deploy.yml`) automatically builds and deploys
+- Configuration is handled automatically - no manual changes needed
+- `basePath` is set automatically based on repository name
+- Static export is enabled only during CI build (development remains dynamic)
 
-3. **Push to GitHub** and configure GitHub Pages to serve from the `docs/` folder on your main branch.
-
-4. **Revert the config changes** in `next.config.ts` after building (remove the `basePath` and `assetPrefix` lines) so local development works correctly.
-
-**Note:** The `basePath` and `assetPrefix` settings break local development, which is why they're not in the config by default. Only add them temporarily when building for GitHub Pages deployment.
+**See [GITHUB-PAGES-DEPLOYMENT.md](./GITHUB-PAGES-DEPLOYMENT.md) for detailed setup instructions and troubleshooting.**
 
 ## 📊 Performance
 

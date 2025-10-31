@@ -1,11 +1,6 @@
-'use client';
-import { useEffect } from 'react';
+import { redirect } from 'next/navigation';
 
-export default function RootRedirect() {
-  useEffect(() => {
-    // Relative keeps basePath; trailing slash ensures correct static file
-    window.location.replace('ckb/');
-  }, []);
-  
-  return null;
+export default function RootPage() {
+  redirect('/ckb/');
 }
+
