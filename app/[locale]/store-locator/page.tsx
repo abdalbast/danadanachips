@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
-import { getAllRetailers } from '@/lib/sanity.queries';
+import { getAllRetailers } from '@/lib/queries';
 import StoreLocatorMap from '@/components/ui/organisms/store-locator-map';
 
 export const dynamic = 'force-static';

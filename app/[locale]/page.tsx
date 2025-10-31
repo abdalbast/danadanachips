@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { MapPin } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getFeaturedProducts, getActiveUGC } from '@/lib/sanity.queries';
+import { getFeaturedProducts, getActiveUGC } from '@/lib/queries';
 import type { Product, UGCContent } from '@/lib/types';
 
 export const dynamic = 'force-static';

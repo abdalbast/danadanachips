@@ -4,7 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import { Button } from '@/components/ui/button';
 import { ProductCard } from '@/components/ui/molecules/product-card';
 import { Sparkles, MapPin, ArrowLeft } from 'lucide-react';
-import { getAllProducts } from '@/lib/sanity.queries';
+import { getAllProducts } from '@/lib/queries';
 import { calculateProductMatch, filterProductsByQuiz, getMoodMessage } from '@/lib/quiz-logic';
 import type { QuizAnswers } from '@/lib/quiz-logic';
 

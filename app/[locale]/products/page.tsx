@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { ProductGrid } from '@/components/ui/organisms/product-grid';
-import { getAllProducts } from '@/lib/sanity.queries';
+import { getAllProducts } from '@/lib/queries';
 
 export const dynamic = 'force-static';
 

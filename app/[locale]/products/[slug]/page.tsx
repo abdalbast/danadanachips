@@ -8,7 +8,7 @@ import { HeatChip } from '@/components/ui/atoms/heat-chip';
 import { HalalBadge } from '@/components/ui/atoms/halal-badge';
 import { ProductCard } from '@/components/ui/molecules/product-card';
 import { MapPin, Share2 } from 'lucide-react';
-import { getProductBySlug } from '@/lib/sanity.queries';
+import { getProductBySlug } from '@/lib/queries';
 import { getProductName, getProductDescription, getLocalizedString } from '@/lib/localization';
 import type { Locale } from '@/i18n';
 
